@@ -38,11 +38,11 @@ switch 2개
 ## 4. 구현
 
 ### GPIO Layout
-7-Segment(4글자) : 16개 => PORTD
-7-Segment(1글자) : 8개 => PORTE
-Switch 1개 : 1개  => PORTC
-LED 6개 : 6개  => PORTC
-=> 총 : 31개
+7-Segment(4글자) : 11개 => PORTD  /br 
+7-Segment(1글자) : 8개 => PORTE /br  
+Switch 1개 : 1개  => PORTC    /br
+LED 7개 : 7개  => PORTC    /br
+=> 총 : 27개
 
 
 
