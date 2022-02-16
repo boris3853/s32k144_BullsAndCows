@@ -1,3 +1,4 @@
+
 #define PCC_BASE (0x40065000)
 #define PCC_PORTB *((volatile unsigned*)(PCC_BASE + 0x128))
 
@@ -41,7 +42,6 @@ void PORT_init(){
 	PORTB_S1 &= ~((0b111)<<MUX);
 	PORTB_S1 |= (1<<MUX);
 
-
 	PORTB_S2 &= ~((0b111)<<MUX);
 	PORTB_S2 |= (1<<MUX);
 
@@ -59,7 +59,6 @@ void PORT_init(){
 
 	PORTB_TURN &= ~((0b111)<<MUX);
 	PORTB_TURN |= (1<<MUX);
-
 
 	GPIOB_PDDR |= (1<<S1);
 	GPIOB_PDDR |= (1<<S2);
