@@ -17,7 +17,6 @@ Simple Bulls_And_Cows game with s32k144 NXP MCU
 
 switch 2개
 - switch1 : Counter (overflow 가능)
-- switch2 : Enter
 
 (1) 초기 세팅
 
@@ -34,6 +33,17 @@ switch 2개
 언제까지? => 승리하면 종료
 1) 모든 LED blink
 
-## 3. 구현
+## 3. 테스트
+
+## 4. 구현
+
+### GPIO Layout
+7-Segment(4글자) : 16개 => PORTD
+7-Segment(1글자) : 8개 => PORTE
+Switch 1개 : 1개  => PORTC
+LED 6개 : 6개  => PORTC
+=> 총 : 31개
+
+
 
 
