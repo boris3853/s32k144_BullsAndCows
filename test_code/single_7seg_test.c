@@ -12,19 +12,21 @@
 #define GPIOE_PDDR		*((volatile unsigned*)(GPIOE_BASE + 0x14))
 
 
+//Port -> GPIO 8~10을 001로
 #define PORTE_BASE		(0x4004D000)
 #define PORTE_PCR0		*((volatile unsigned*)(PORTE_BASE + 0x00))
 #define PORTE_PCR1		*((volatile unsigned*)(PORTE_BASE + 0x04))
+
+#define PORTE_PCR6		*((volatile unsigned*)(PORTE_BASE + 0x18))
+
 #define PORTE_PCR9		*((volatile unsigned*)(PORTE_BASE + 0x24))
 #define PORTE_PCR13		*((volatile unsigned*)(PORTE_BASE + 0x34))
 #define PORTE_PCR14		*((volatile unsigned*)(PORTE_BASE + 0x38))
 #define PORTE_PCR15		*((volatile unsigned*)(PORTE_BASE + 0x3C))
 #define PORTE_PCR16		*((volatile unsigned*)(PORTE_BASE + 0x40))
 
-#define PORTE_PCR6		*((volatile unsigned*)(PORTE_BASE + 0x18)) // com단자
 
-
-
+// com 단자  0이여야 선택
 #define PTE0			0
 #define PTE1			1
 #define PTE6			6
@@ -62,47 +64,47 @@ void SEG_init(void){
 
 void SEGNUM(int num){
 
-	GPIOE_PCOR |= (1<<PTE13)|(1<<PTE14)|(1<<PTE15)|(1<<PTE16)|(1<<PTE0)|(1<<PTE1)|(1<<PTE9);
+	GPIOE_PCOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1)|(1<<PTE13)|(1<<PTE14)|(1<<PTE9)|(1<<PTE0);
 
 	switch(num){
 		case 0:
-			GPIOE_PSOR |= (1<<PTE13)|(1<<PTE14)|(1<<PTE16)|(1<<PTE0)|(1<<PTE1)|(1<<PTE9);
+			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1)|(1<<PTE13)|(1<<PTE14)|(1<<PTE9);
 			break;
 
 		case 1:
-			GPIOE_PSOR |= (1<<PTE0)|(1<<PTE14);
+			GPIOE_PSOR |= (1<<PTE15)|(1<<PTE1);
 			break;
 
 		case 2:
-			GPIOE_PSOR |= (1<<PTE9)|((1<<PTE0)|1<<PTE15)|(1<<PTE1)|(1<<PTE13);
+			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE13)|(1<<PTE14)|(1<<PTE0);
 	   		break;
 
 	   	case 3:
-	   		GPIOE_PSOR |= (1<<PTE9)|(1<<PTE0)|(1<<PTE14)|(1<<PTE13)|(1<<PTE15);
+	   		GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1)|(1<<PTE13)|(1<<PTE0);
 			break;
 
   		case 4:
-  			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE0)|(1<<PTE14);
+  			GPIOE_PSOR |= (1<<PTE15)|(1<<PTE1)|(1<<PTE9)|(1<<PTE0);
 	   		break;
 
 	   	case 5:
-			GPIOE_PSOR |= (1<<PTE9)|(1<<PTE16)|(1<<PTE15)|(1<<PTE14)|(1<<PTE13);
+			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE1)|(1<<PTE13)|(1<<PTE9)|(1<<PTE0);
 			break;
 
 	   	case 6:
-	   		GPIOE_PSOR |= (1<<PTE13)|(1<<PTE1)|(1<<PTE15)|(1<<PTE16)|(1<<PTE14)|(1<<PTE9);
+	   		GPIOE_PSOR |= (1<<PTE16)|(1<<PTE1)|(1<<PTE13)|(1<<PTE14)|(1<<PTE9)|(1<<PTE0);;
 	   		break;
 
 	   	case 7:
-	   		GPIOE_PSOR |= (1<<PTE0)|(1<<PTE14)|(1<<PTE9);
+	   		GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1);
 	   		break;
 
 		case 8:
-			GPIOE_PSOR |= (1<<PTE13)|(1<<PTE1)|(1<<PTE15)|(1<<PTE16)|(1<<PTE0)|(1<<PTE14)|(1<<PTE9);
+			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1)|(1<<PTE13)|(1<<PTE14)|(1<<PTE9)|(1<<PTE0);
 			break;
 
 		case 9:
-			GPIOE_PSOR |= (1<<PTE13)|(1<<PTE15)|(1<<PTE16)|(1<<PTE0)|(1<<PTE14)|(1<<PTE9);
+			GPIOE_PSOR |= (1<<PTE16)|(1<<PTE15)|(1<<PTE1)|(1<<PTE13)|(1<<PTE9)|(1<<PTE0);
 			break;
 	}
 
@@ -129,6 +131,7 @@ int main(void) {
     			SEGNUM(i);
     		}
     	}
+
     }
 }
 
