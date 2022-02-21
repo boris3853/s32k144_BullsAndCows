@@ -6,7 +6,7 @@
 #define MUX_BITS		8
 
 
-#define GPIOE_BASE		(0x400FF100) // 8, 9는 seg, 나머지 com단자
+#define GPIOE_BASE		(0x400FF100)
 #define GPIOE_PSOR		*((volatile unsigned*)(GPIOE_BASE + 0x4))
 #define GPIOE_PCOR		*((volatile unsigned*)(GPIOE_BASE + 0x8))
 #define GPIOE_PDDR		*((volatile unsigned*)(GPIOE_BASE + 0x14))
