@@ -12,7 +12,6 @@
 #define GPIOE_PDDR		*((volatile unsigned*)(GPIOE_BASE + 0x14))
 
 
-//Port -> GPIO 8~10을 001로
 #define PORTE_BASE		(0x4004D000)
 #define PORTE_PCR0		*((volatile unsigned*)(PORTE_BASE + 0x00))
 #define PORTE_PCR1		*((volatile unsigned*)(PORTE_BASE + 0x04))
@@ -26,7 +25,6 @@
 #define PORTE_PCR16		*((volatile unsigned*)(PORTE_BASE + 0x40))
 
 
-// com 단자  0이여야 선택
 #define PTE0			0
 #define PTE1			1
 #define PTE6			6
