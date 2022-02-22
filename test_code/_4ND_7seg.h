@@ -1,3 +1,13 @@
+/*
+ * _4ND_7seg.h
+ *
+ *  Created on: Feb 22, 2022
+ *      Author: Kyung
+ */
+
+#ifndef _4ND_7SEG_H_
+#define _4ND_7SEG_H_
+
 #define PCC_BASE 	(0x40065000)
 #define PCC_PORTD	*((volatile unsigned*)(PCC_BASE + 0x130))
 #define CGC_BIT 30
@@ -37,7 +47,7 @@
 
 int NUM[11] = {0x1C26, 0x1800, 0x1622, 0x1E20, 0x1A04, 0x0E24, 0x0E26, 0x1820, 0x1E26, 0x1A24};
 
-void PORT_init(){
+void _4ND_7SEG_PORT_init(){
 	PCC_PORTD |= (1 << CGC_BIT);
 	PORTD_PCR0 &= ~((0b111) << MUX_BITS);
 	PORTD_PCR0 |= (1 << MUX_BITS);
@@ -83,16 +93,5 @@ void delay_ms(int num){
 	for(int i=0;i<num;++i);
 }
 
-int main(){
-	PORT_init();
-
-	for(;;){
-		d_output(3,4);
-		delay_ms(1000);
-		d_output(1,5);
-		delay_ms(1000);
-		d_output(2,7);
-		delay_ms(1000);
-	}
-}
+#endif /* _4ND_7SEG_H_ */
 
