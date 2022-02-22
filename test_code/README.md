@@ -20,6 +20,6 @@
 
 #### 3) LEDs : 
 
-#### 4) Clocks and Mode :
+#### 4) Clocks and Modes : "clocks_and_modes.h"
 
 #### 5) UART :
