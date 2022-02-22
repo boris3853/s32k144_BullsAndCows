@@ -16,10 +16,10 @@
 ## 2. test_code/include : 각 테스트 코드를 헤더파일로 
 #### 1) 4ND 7-seg : "_4ND_7seg.h"
 
-#### 2) 1ND 7-seg :
+#### 2) 1ND 7-seg : "_1ND_7seg.h"
 
-#### 3) LEDs : 
+#### 3) LEDs : "LEDs.h"
 
-#### 4) Clocks and Modes : "clocks_and_modes.h"
+#### 4) Clocks and Modes : "clocks_and_modes.h" / "clocks_and_modes.c" 
 
 #### 5) UART :
