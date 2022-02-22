@@ -47,7 +47,7 @@
 
 int NUM[11] = {0x1C26, 0x1800, 0x1622, 0x1E20, 0x1A04, 0x0E24, 0x0E26, 0x1820, 0x1E26, 0x1A24};
 
-void _4ND_7SEG_PORT_init(){
+void _4ND_7SEG_init(){
 	PCC_PORTD |= (1 << CGC_BIT);
 	PORTD_PCR0 &= ~((0b111) << MUX_BITS);
 	PORTD_PCR0 |= (1 << MUX_BITS);
