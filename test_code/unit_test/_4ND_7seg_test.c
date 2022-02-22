@@ -1,7 +1,7 @@
 #include "_4ND_7seg.h"
 
 int main(){
-	_4ND_7SEG_PORT_init();
+	_4ND_7SEG_init();
 
 	for(;;){
 		d_output(3,5);
