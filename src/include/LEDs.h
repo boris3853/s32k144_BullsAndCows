@@ -36,10 +36,10 @@
 #define OUT 16
 #define TURN 13
 
-void PORT_init(void);
+void LEDS_PORT_init(void);
 
 
-void PORT_init(){
+void LEDS_PORT_init(){
 	PCC_PORTB |= (1<<CGC);
 
 	PORTB_S1 &= ~((0b111)<<MUX);
