@@ -2,6 +2,8 @@
 #ifndef _UART_H_
 #define _UART_H_
 
+#include <stdint.h>
+
 #define PCC_PORTC *((volatile unsigned*)(PCC_BASE + 0x12C)) // uart re, tr
 #define PCC_LPUART1 *((volatile unsigned*)(PCC_BASE + 0x1AC))
 
