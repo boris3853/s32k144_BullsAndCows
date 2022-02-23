@@ -7,7 +7,6 @@
 #include "define.h"
 #include "TimerSet.h"
 
-/**** Timer Settings ****/
 void PORT_set(){
 	_4ND_7SEG_init();
 	_1ND_7SEG_init();
