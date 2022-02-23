@@ -25,7 +25,7 @@
 - void SEGNUM(int) : 1ND-7세그먼트 값 설정
 
 #### 3) LEDs : "LEDs.h"
-- void PORT_init(void) : LED(O / S / B / T) Port 설정
+- void LEDS_PORT_init(void) : LED(O / S / B / T) Port 설정
 
 #### 4) Clocks and Modes : "clocks_and_modes.h" / "clocks_and_modes.c" 
 
@@ -40,4 +40,33 @@
 - void LPUART1_transmit_string(char *) : 문자열 보내기
 
 ## 3. /src : 메인 코드 구현
+#### INIT_setting
+[1. S32K_1]
+  1) 4ND Seg 000 세팅
+  2) 1ND Seg 0 ~ 9 중 랜덤 값 배정
+  3) CAN 통신 이용해서 S32K2에게 랜덤 값 전달
 
+[2. S32K_2]
+1) 4ND Seg 000 세팅
+2) 1ND Seg 0 ~ 9 (받은 값 제외) 중에서 값 배정
+3) S32K_1와 S32K_2 중 선공 / 후공 결정
+4) S32K_2가 선이면 Turn LED 출력
+5) CAN 통신 이용해서 S32K_1에게 선/후 결과 전달 
+
+[3. S32K_1]
+1) S32K_1이 선이면 Turn LED 출력
+
+[4. 선공 측]
+1) UART 이용해서 "세자리 숫자(000 ~ 999) 입력: " 출력
+2) 데이터 받고 잘못된 입력 값일 경우에 재출력
+3) 정상 값이면 4ND LED 값 업데이트
+4) Turn LED Off
+
+[5. 후공 측]
+1) Turn LED On
+2) UART 이용해서 "세자리 숫자(000 ~ 999) 입력: " 출력
+3) 데이터 받고 잘못된 입력 값일 경우에 재출력
+4) 정상 값이면 4ND LED 값 업데이트
+5) Turn LED Off
+
+#### Main
