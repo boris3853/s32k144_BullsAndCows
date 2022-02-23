@@ -19,9 +19,11 @@
 #define MUX 8
 
 #define GPIOB_BASE (0x400FF040)
+#define GPIOB_PSOR *((volatile unsigned*)(GPIOB_BASE + 0x4))
+#define GPIOB_PCOR *((volatile unsigned*)(GPIOB_BASE + 0x8))
 #define GPIOB_PTOR *((volatile unsigned*)(GPIOB_BASE + 0xC))
 #define GPIOB_PDDR *((volatile unsigned*)(GPIOB_BASE + 0x14))
-#define GPIOD_PSOR *((volatile unsigned*)(GPIOB_BASE + 0x4))
+
 #define GPIOD_PCOR *((volatile unsigned*)(GPIOB_BASE + 0x8))
 #define GPIOD_PTOR *((volatile unsigned*)(GPIOB_BASE + 0xC))
 #define GPIOD_PDDR *((volatile unsigned*)(GPIOB_BASE + 0x14))
