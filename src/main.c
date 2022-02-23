@@ -4,7 +4,10 @@
 #include "_4ND_7seg.h"
 #include "clocks_and_modes.h"
 #include "UART.h"
+#include "define.h"
+#include "TimerSet.h"
 
+/**** Timer Settings ****/
 void PORT_set(){
 	_4ND_7SEG_init();
 	_1ND_7SEG_init();
@@ -15,6 +18,17 @@ void PORT_set(){
 	UART_PORT_init();
 }
 
+void Timer_set(){
+
+	NVIC_init_IRQs();
+	LPIT0_init();
+}
+
+
+int counterSec = 0;
+int myTurn = ~0; // if myTurn != 0 -> my turn
+
+
 void INIT_set(){
 
 }
@@ -22,10 +36,38 @@ void INIT_set(){
 int main(){
 	// 포트 세팅
 	PORT_set();
+	Timer_set();
 
 	// 초기 설정
 	INIT_set();
 
 	while(1){
+		
 	}
 }
+
+
+
+/**** Timer Settings ****/
+void LPIT0_Ch0_IRQHandler(void){
+
+	
+
+	SEGNUM(counterSec);
+	if(myTurn != 0){
+		counterSec++;
+		if(counterSec == 10){
+			counterSec = 0;
+
+			myTurn = ~myTurn;
+			}
+		}
+
+	else{ // not my turn
+		counterSec = 0;
+
+	}
+
+	LPIT_MSR |= (1<<TIF0_BIT);
+}
+
