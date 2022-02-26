@@ -1,4 +1,3 @@
-
 #ifndef _DEFINE_H_
 #define _DEFINE_H_
 
@@ -11,7 +10,6 @@
 #define PCC_PORTE		*((volatile unsigned*)(PCC_BASE + 0x134))
 
 #define PCC_LPUART1		*((volatile unsigned*)(PCC_BASE + 0x1AC)) // for uart
-
 #define PCC_LPIT			*((volatile unsigned*)(PCC_BASE + 0xDC)) // for timer
 
 #define CGC_BIT			30 // Clock Enable
@@ -64,8 +62,6 @@
 #define PORTE_PCR14		*((volatile unsigned*)(PORTE_BASE + 0x38))
 #define PORTE_PCR15		*((volatile unsigned*)(PORTE_BASE + 0x3C))
 #define PORTE_PCR16		*((volatile unsigned*)(PORTE_BASE + 0x40))
-
-
 
 
 
@@ -158,7 +154,7 @@
 
 #define NVIC_IPR_BASE		(0xE000E400)
 #define NVIC_IPR48			*((volatile unsigned*)(NVIC_IPR_BASE + 0x30))
-#define NVIC_IPR61			*((volatile unsigned*)(NVIC_IPR_BASE + 0x3D))
+#define NVIC_IPR49			*((volatile unsigned*)(NVIC_IPR_BASE + 0x31))
 
 
 // LPIT Reg
@@ -168,10 +164,14 @@
 #define LPIT_MIER			*((volatile unsigned*)(LPIT_BASE + 0x10))
 #define LPIT_TVAL0			*((volatile unsigned*)(LPIT_BASE + 0x20))
 #define LPIT_TCTRL0			*((volatile unsigned*)(LPIT_BASE + 0x28))
+#define LPIT_TVAL1			*((volatile unsigned*)(LPIT_BASE + 0x30))
+#define LPIT_TCTRL1			*((volatile unsigned*)(LPIT_BASE + 0x38))
 
 #define M_CEN_BIT			0
 #define TIF0_BIT			0
 #define TIE0_BIT			0
+#define TIF1_BIT			1
+#define TIE1_BIT			1
 #define MODE_BITS			2
 #define T_EN_BIT			0
 

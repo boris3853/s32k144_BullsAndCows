@@ -5,7 +5,7 @@
 #include "clocks_and_modes.h"
 #include "UART.h"
 #include "define.h"
-#include "TimerSet.h"
+#include "Timerset.h"
 
 void PORT_set(){
 	_4ND_7SEG_init();

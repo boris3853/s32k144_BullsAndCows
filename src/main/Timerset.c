@@ -1,7 +1,4 @@
-#ifndef _TIMERSET_H_
-#define _TIMERSET_H_
-
-#include "define.h"
+#include "Timerset.h"
 
 void NVIC_init_IRQs(void){
 	NVIC_ICPR1 |= (1<<(48 % 32)) | (1<<(49 % 32));
@@ -9,7 +6,6 @@ void NVIC_init_IRQs(void){
 	NVIC_IPR48 = 0x10;
 	NVIC_IPR49 = 0x20;
 }
-
 
 void LPIT0_init(void){
 	PCC_LPIT &= ~((0b111)<<PCS_BITS);
@@ -29,8 +25,4 @@ void LPIT0_init(void){
 	LPIT_TVAL1 = 40000000;
 	LPIT_TCTRL1 &= ~((0b11)<<MODE_BITS);
 	LPIT_TCTRL1 |= (1<<T_EN_BIT);
-
 }
-
-#endif /* _USERTIME_H_ */
-

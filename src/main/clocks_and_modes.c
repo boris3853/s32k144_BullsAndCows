@@ -1,8 +1,3 @@
-#ifndef CLOCKS_AND_MODES_H_
-#define CLOCKS_AND_MODES_H_
-
-#include "device_registers.h"	/* include peripheral declarations S32K144 */
-
 void SOSC_init_8MHz(void)
 {
 	/*!
@@ -74,5 +69,3 @@ void NormalRUNmode_80MHz (void)
 
   while (((SCG->CSR & SCG_CSR_SCS_MASK) >> SCG_CSR_SCS_SHIFT ) != 6) {}	/* Wait for sys clk src = SPLL */
 }
-
-#endif /* CLOCKS_AND_MODES_H_ */
