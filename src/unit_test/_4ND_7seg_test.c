@@ -1,15 +1,31 @@
 #include "_4ND_7seg.h"
+#include "Timerset.h"
+#include "S32K144.h"
+#include "clocks_and_modes.h"
 
-int main(){
+int i = 0;
+int main(void) {
 	_4ND_7SEG_init();
+	SOSC_init_8MHz();
+	SPLL_init_160MHz();
+	NormalRUNmode_80MHz();
+	NVIC_init_IRQs();
+	LPIT0_init();
 
-	for(;;){
-		d_output(3,5);
-		delay_ms(1000);
-		d_output(1,2);
-		delay_ms(1000);
-		d_output(2,1);
-		delay_ms(1000);
-	}
+    for (;;) {
+    	SEG3NUM(i);
+    }
+}
+
+void LPIT0_Ch0_IRQHandler(){
+	LPIT_MSR |= (1<<TIF0_BIT);
+}
+
+void LPIT0_Ch1_IRQHandler(){
+	i++;
+
+	if(i == 1000) i = 0;
+
+	LPIT_MSR |= (1<<TIF1_BIT);
 }
 

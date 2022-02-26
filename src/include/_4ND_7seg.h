@@ -66,6 +66,13 @@ void _4ND_7SEG_init(){
 				(1 << SEG16) | (1 << SEG13) | (1 << SEG3) | (1 << SEG5) | (1 << SEG11) | (1 << SEG15);
 }
 
+void delay_us(int num){
+	for(int i=0;i<num;++i);
+}
+
+void delay_ms(int num){
+	for(int i=0;i<num*1000;++i);
+}
 
 void d_clear(){
 	GPIOD_PSOR |= (1 << SEG14) | (1 << SEG16) | (1 << SEG13) |
@@ -74,24 +81,30 @@ void d_clear(){
 // digit : 1 2 3
 // num : 0 ~ 9
 void d_output(int digit, int num){
-	if(digit == 1){ // 첫번쨰 자리수
+	if(digit == 1){ // 泥ル쾲夷� �옄由ъ닔
 		GPIOD_PSOR |= (1 << SEG1);
 		GPIOD_PCOR |= (1 << SEG2) | (1 << SEG6);
-	}else if(digit == 2){ // 두번쨰 자리수
+	}else if(digit == 2){ // �몢踰덉�� �옄由ъ닔
 		GPIOD_PSOR |= (1 << SEG2);
 		GPIOD_PCOR |= (1 << SEG1) | (1 << SEG6);
-	}else if(digit == 3){ // 세번쨰 자리수
+	}else if(digit == 3){ // �꽭踰덉�� �옄由ъ닔
 		GPIOD_PSOR |= (1 << SEG6);
 		GPIOD_PCOR |= (1 << SEG1) | (1 << SEG2);
 	}
 
 	d_clear();
 	GPIOD_PCOR |= NUM[num];
+	delay_ms(10);
 }
 
-void delay_ms(int num){
-	for(int i=0;i<num;++i);
+void SEG3NUM(int num){
+	d_output(3, num/100%100);
+    	d_output(2, num/10%10);
+    	d_output(1, num%10);
 }
+
+
 
 #endif /* _4ND_7SEG_H_ */
+
 
