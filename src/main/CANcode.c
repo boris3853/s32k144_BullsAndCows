@@ -18,11 +18,11 @@
 #define PORTC_PCR12  *((volatile unsigned*)(PORTC_BASE + 0x30))
 
 #define PORTD_BASE (0x4004C000)
-#define PORTD_PCR16  *((volatile unsigned*)(PORTC_BASE + 0x40))
+#define PORTD_PCR16  *((volatile unsigned*)(PORTD_BASE + 0x40))
 
 #define PORTE_BASE (0x4004D000)
-#define PORTE_PCR4  *((volatile unsigned*)(PORTC_BASE + 0x10))
-#define PORTE_PCR5  *((volatile unsigned*)(PORTC_BASE + 0x14))
+#define PORTE_PCR4  *((volatile unsigned*)(PORTE_BASE + 0x10))
+#define PORTE_PCR5  *((volatile unsigned*)(PORTE_BASE + 0x14))
 
 #define MUX 8
 
@@ -105,14 +105,14 @@
 uint32_t flag;
 uint32_t RxDATA[2];
 
-void NVIC_init_IRQs(void){
+void NVIC_init_IRQs(void){  // pass
 	NVIC_ICPR1 |= (1<<(48%32));
 	NVIC_ISER1 |= (1<<(48%32));
 	NVIC_IPR48 = 10;
 }
 
 
-void LPIT0_init(void){
+void LPIT0_init(void){ // pass
 	PCC_LPIT &= ~((0b111)<<PCS);
 	PCC_LPIT |= ((0b110)<<PCS);
 	PCC_LPIT |= (1<<CGC);
@@ -128,8 +128,7 @@ void LPIT0_init(void){
 }
 
 void CAN_init(){
-
-#define MSG_BUF 4
+#define MSG_BUF_SIZE 4
 
 	PCC_FlexCAN0 |= (1<<CGC);
 
@@ -150,7 +149,7 @@ void CAN_init(){
 	FlexCAN0_CTRL1 |= (1<<SMP);
 
 	FlexCAN0_MB0_0 = 0;
-	FlexCAN0_MB0_1 = 0;
+	FlexCAN0_MB0_1 = 0; 
 	FlexCAN0_MB0_2 = 0;
 	FlexCAN0_MB0_3 = 0;
 
@@ -159,9 +158,9 @@ void CAN_init(){
 	FlexCAN0_MB4_2 = 0;
 	FlexCAN0_MB4_3 = 0;
 
-	FlexCAN0_RXIMR4 = (0xFFFFFFFF);
+	FlexCAN0_RXIMR4 = 0xFFFFFFFF;
 
-	FlexCAN0_RXMGMASK = (0x1FFFFFFF);
+	FlexCAN0_RXMGMASK = 0x1FFFFFFF;
 
 	FlexCAN0_MB4_0 |= ((0b0100)<<CODE);
 
@@ -178,7 +177,7 @@ void CAN_init(){
 	while((FlexCAN0_MCR & (1<<NOTRDY))!=0){}
 }
 
-void CAN_trasmit_msg(uint32_t flag){
+void CAN_transmit_msg(uint32_t flag){
 	FlexCAN0_IFLAG1 |= 0x00000001;
 
 	FlexCAN0_MB0_2 = flag;
@@ -209,7 +208,7 @@ void CAN_receive_msg(void){
 void CAN_PORT_init(void){
 	PCC_PORTC |= (1<<CGC);
 	PORTC_PCR12 &= ~((0b111)<<MUX);
-	PORTC_PCR12 |= ~((0b111)<<MUX);
+	PORTC_PCR12 |= ~((0b001)<<MUX);
 	GPIOC_PDDR &= ~(1<<PTC12);
 
 	PCC_PORTD |= (1<<CGC);
@@ -226,7 +225,7 @@ void CAN_PORT_init(void){
 }
 
 
-int main(void){
+int main(void){ // pass
 	SOSC_init_8MHz();
 	SPLL_init_160MHz();
 	NormalRunmode_80MHz();
@@ -247,17 +246,12 @@ int main(void){
 			GPIOD_PSOR |= (1<<PTD16);
 
 	}
-
-	return 0;
-
 }
 
-void LPIT0_Ch_IRQHandler(void){
-	flag = (uint32_t)((GPIOC_PDIR&(1<<PTC12) << PTC12));
+void LPIT0_Ch0_IRQHandler(void){
+	flag = (uint32_t)((GPIOC_PDIR&(1<<PTC12))>>PTC12);
 
 	CAN_transmit_msg(flag);
 
 	LPIT_MSR |= (1<<TIF0);
 }
-
-
