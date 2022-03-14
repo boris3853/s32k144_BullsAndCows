@@ -13,9 +13,9 @@
 
 /********** Add CAN communication, But Not Check this code. PLZ RUN AND TEST THIS ON BOARD ****************/
 /*
- * Edit num_PlaySet -> num_PlayTmp
+ * Edit num_PlaySet -> num_PlayCmp
  * Changed lots of codes... please check these... ,,
- *
+ * 
  */
 
 
@@ -24,7 +24,7 @@
 
 
 int num_Baseball = 0; // Player's number for playing this game
-int num_PlayTmp = 0; // this variable is use for INIT_set() and compare opponent's number!
+int num_PlayCmp = 0; // this variable is use for INIT_set() and compare opponent's number!
 int num_Order = 0; // 1st == 0, 2nd == 1;
 
 
@@ -54,7 +54,7 @@ int main(void){
 
 
 	/**** For Setting the Order ****/
-	num_PlaySet = rand()%10; // CAN -> get the other player's number and compare these
+	num_PlayCmp = rand()%10; // CAN -> get the other player's number and compare these
 	SEGNUM(num_PlaySet); 	// Turn on _1ND_SEG for display random number
 	Flex_transmin_msg(num_PlaySet);
 
@@ -62,7 +62,7 @@ int main(void){
 	while((FlexCAN0_IFLAG1 & (1<<4))!= 0)
 		CAN_receive_msg();
 
-	if(num_PlayTmp > RxDATA[0]){ // My Random number is Bigger
+	if(num_PlayCmp > RxDATA[0]){ // My Random number is Bigger
 		num_Order = 0;
 		SEGNUM(num_Order + 1); // output is 1 (read easily for player)
 		LPUART1_transmit_string("> Your Order: 1st \n\r");
@@ -79,13 +79,13 @@ int main(void){
 
 
 	/**** For Setting Player's Number to play baseball game ****/
-	num_PlayTmp = 1;
+	num_PlayCmp = 1;
 
 	char str[STR_MAXLEN] = {0};
 	int str_cur_len = 0;
 	LPUART1_transmit_string("Input your number\n\r");
 
-	while(num_PlayTmp){
+	while(num_PlayCmp){
 
 		char receive;
 
@@ -107,7 +107,7 @@ int main(void){
 				LPUART1_transmit_string(str);
 				LPUART1_transmit_char('\n');
 				LPUART1_transmit_char('\r');
-				num_PlayTmp = 0;
+				num_PlayCmp = 0;
 			}
 
 			else{
@@ -125,7 +125,7 @@ int main(void){
 
 	while((FlexCAN0_IFLAG1 & (1<<4))!= 0){
 		CAN_receive_msg();
-		num_PlayTmp |= (RxDATA[1] << 32)|(RxDATA[0] << 0); // is this right expression? Check Plz T.T
+		num_PlayCmp |= (RxDATA[1] << 32)|(RxDATA[0] << 0); // is this right expression? Check Plz T.T
 	}
 
 
