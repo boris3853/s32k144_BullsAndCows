@@ -35,4 +35,3 @@
 - void CAN_init(void) : CAN 통신 관련 설정
 - void CAN_transmit_msg(uint32_t) : CAN 통신 송신
 - void CAN_receive_msg(void) : CAN 통신 수신
-- void CAN_PORT_init(void) : CAN Port 설정
