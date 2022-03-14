@@ -3,19 +3,19 @@
 int NUM[11] = {0x1C26, 0x1800, 0x1622, 0x1E20, 0x1A04, 0x0E24, 0x0E26, 0x1820, 0x1E26, 0x1A24};
 
 void _4ND_7SEG_init(void){
-	PCC_PORTD |= (1 << CGC_BIT);
-	PORTD_PCR0 &= ~((0b111) << MUX_BITS);
-	PORTD_PCR0 |= (1 << MUX_BITS);
-	PORTD_PCR1 |= (1 << MUX_BITS);
-	PORTD_PCR2 |= (1 << MUX_BITS);
-	PORTD_PCR3 |= (1 << MUX_BITS);
-	PORTD_PCR5 |= (1 << MUX_BITS);
-	PORTD_PCR9 |= (1 << MUX_BITS);
-	PORTD_PCR10 |= (1 << MUX_BITS);
-	PORTD_PCR11 |= (1 << MUX_BITS);
-	PORTD_PCR12 |= (1 << MUX_BITS);
-	PORTD_PCR15 |= (1 << MUX_BITS);
-	PORTD_PCR16 |= (1 << MUX_BITS);
+	PCC_PORTD |= (1 << CGC);
+	PORTD_PCR0 &= ~((0b111) << MUX);
+	PORTD_PCR0 |= (1 << MUX);
+	PORTD_PCR1 |= (1 << MUX);
+	PORTD_PCR2 |= (1 << MUX);
+	PORTD_PCR3 |= (1 << MUX);
+	PORTD_PCR5 |= (1 << MUX);
+	PORTD_PCR9 |= (1 << MUX);
+	PORTD_PCR10 |= (1 << MUX);
+	PORTD_PCR11 |= (1 << MUX);
+	PORTD_PCR12 |= (1 << MUX);
+	PORTD_PCR15 |= (1 << MUX);
+	PORTD_PCR16 |= (1 << MUX);
 
 	GPIOD_PDDR |= (1 << SEG1) | (1 << SEG2) | (1 << SEG6) | (1 << SEG8) | (1 << SEG14) |
 				(1 << SEG16) | (1 << SEG13) | (1 << SEG3) | (1 << SEG5) | (1 << SEG11) | (1 << SEG15);

@@ -1,6 +1,7 @@
 #ifndef CAN_H_
 #define CAN_H_
 
+#include <stdint.h>
 #include "define.h"
 
 void CAN_init(void);

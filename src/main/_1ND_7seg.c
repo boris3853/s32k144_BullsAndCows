@@ -2,23 +2,23 @@
 
 void _1ND_7SEG_init(void){
 
-	PCC_PORTE |= (1 << CGC_BIT);
-	PORTE_PCR0 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR0 |= (1 << MUX_BITS);
-	PORTE_PCR1 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR1 |= (1 << MUX_BITS);
-	PORTE_PCR6 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR6 |= (1 << MUX_BITS);
-	PORTE_PCR9 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR9 |= (1 << MUX_BITS);
-	PORTE_PCR13 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR13 |= (1 << MUX_BITS);
-	PORTE_PCR14 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR14 |= (1 << MUX_BITS);
-	PORTE_PCR15 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR15 |= (1 << MUX_BITS);
-	PORTE_PCR16 &= ~((0b111) << MUX_BITS);
-	PORTE_PCR16 |= (1 << MUX_BITS);
+	PCC_PORTE |= (1 << CGC);
+	PORTE_PCR0 &= ~((0b111) << MUX);
+	PORTE_PCR0 |= (1 << MUX);
+	PORTE_PCR1 &= ~((0b111) << MUX);
+	PORTE_PCR1 |= (1 << MUX);
+	PORTE_PCR6 &= ~((0b111) << MUX);
+	PORTE_PCR6 |= (1 << MUX);
+	PORTE_PCR9 &= ~((0b111) << MUX);
+	PORTE_PCR9 |= (1 << MUX);
+	PORTE_PCR13 &= ~((0b111) << MUX);
+	PORTE_PCR13 |= (1 << MUX);
+	PORTE_PCR14 &= ~((0b111) << MUX);
+	PORTE_PCR14 |= (1 << MUX);
+	PORTE_PCR15 &= ~((0b111) << MUX);
+	PORTE_PCR15 |= (1 << MUX);
+	PORTE_PCR16 &= ~((0b111) << MUX);
+	PORTE_PCR16 |= (1 << MUX);
 
 	GPIOE_PDDR |= (1<<PTE13)|(1<<PTE14)|(1<<PTE15)|(1<<PTE16)|(1<<PTE0)|(1<<PTE1)|(1<<PTE6)|(1<<PTE9);
 }

@@ -11,9 +11,10 @@
 //---------------------------------------------------------------------------
 //PCC
 #define PCC_BASE		(0x40065000)
-#define PCC_PORTC		*((volatile unsigned*)(PCC_BASE + 0x12C))
-#define PCC_PORTD		*((volatile unsigned*)(PCC_BASE + 0x130))
-#define PCC_PORTE		*((volatile unsigned*)(PCC_BASE + 0x134))
+#define PCC_PORTB	*((volatile unsigned*)(PCC_BASE + 0x128))
+#define PCC_PORTC	*((volatile unsigned*)(PCC_BASE + 0x12C))
+#define PCC_PORTD	*((volatile unsigned*)(PCC_BASE + 0x130))
+#define PCC_PORTE	*((volatile unsigned*)(PCC_BASE + 0x134))
 #define PCC_LPIT		*((volatile unsigned*)(PCC_BASE + 0xDC))
 #define PCC_FlexCAN0 	*((volatile unsigned*)(PCC_BASE + 0x90))
 #define PCC_LPUART1 *((volatile unsigned*)(PCC_BASE + 0x1AC))
