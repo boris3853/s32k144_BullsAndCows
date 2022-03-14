@@ -37,10 +37,13 @@ void PORT_set(){
 	SPLL_init_160MHz();
 	NormalRUNmode_80MHz();
 	UART_PORT_init();
+	LPUART1_init();
 	CAN_init();
-	CAN_PORT_init();
 	NVIC_init_IRQs();
-	LPIT0_init();
+
+	// change this code to use multiple channels of LPIT0
+	// ex) LPIT0_init(0,0,1,0);
+	ex) LPIT0_init(0,0,0,0);
 }
 
 
