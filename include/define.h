@@ -28,13 +28,14 @@
 #define LPIT_MCR			*((volatile unsigned*)(LPIT_BASE + 0x8))
 #define LPIT_MSR			*((volatile unsigned*)(LPIT_BASE + 0xC))
 #define LPIT_MIER			*((volatile unsigned*)(LPIT_BASE + 0x10))
-#define LPIT_TVAL0			*((volatile unsigned*)(LPIT_BASE + 0x20))
-#define LPIT_TCTRL0			*((volatile unsigned*)(LPIT_BASE + 0x28))
-#define LPIT_TVAL1			*((volatile unsigned*)(LPIT_BASE + 0x30))
-#define LPIT_TCTRL1			*((volatile unsigned*)(LPIT_BASE + 0x38))
+#define LPIT_TVAL0		*((volatile unsigned*)(LPIT_BASE + 0x20))
+#define LPIT_TCTRL0		*((volatile unsigned*)(LPIT_BASE + 0x28))
+#define LPIT_TVAL1		*((volatile unsigned*)(LPIT_BASE + 0x30))
+#define LPIT_TCTRL1		*((volatile unsigned*)(LPIT_BASE + 0x38))
 #define LPIT_TVAL2    		*((volatile unsigned*)(LPIT_BASE + 0x40))
 #define LPIT_TCTRL2   		*((volatile unsigned*)(LPIT_BASE + 0x48))
-
+#define LPIT_TVAL3    		*((volatile unsigned*)(LPIT_BASE + 0x50))
+#define LPIT_TCTRL3   		*((volatile unsigned*)(LPIT_BASE + 0x58))
 
 
 #define M_CEN			0
@@ -44,6 +45,8 @@
 #define TIE1			1
 #define TIF2			2
 #define TIE2			2
+#define TIF3			3
+#define TIE3			3
 #define MODE			2
 #define T_EN			0
 
@@ -62,7 +65,7 @@
 #define NVIC_IPR48			*((volatile unsigned*)(NVIC_IPR_BASE + 0x30))
 #define NVIC_IPR49			*((volatile unsigned*)(NVIC_IPR_BASE + 0x31))
 #define NVIC_IPR50			*((volatile unsigned*)(NVIC_IPR_BASE + 0x32))
-
+#define NVIC_IPR51			*((volatile unsigned*)(NVIC_IPR_BASE + 0x33))
 
 //---------------------------------------------------------------------------
 //FlexCAN Reg

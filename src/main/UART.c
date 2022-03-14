@@ -1,7 +1,7 @@
 #include "UART.h"
 
 void UART_PORT_init(void){
-		PCC_PORTC |= (1<<CGC);
+	PCC_PORTC |= (1<<CGC);
 
 	PORTC_PCR6 &= ~((0b111)<<MUX);
 	PORTC_PCR6 |= ((0b010)<<MUX);

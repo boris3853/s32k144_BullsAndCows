@@ -1,3 +1,5 @@
+#include "clocks_and_modes.h"
+
 void SOSC_init_8MHz(void)
 {
 	/*!

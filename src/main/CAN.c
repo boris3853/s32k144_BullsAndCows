@@ -1,33 +1,9 @@
 #include "CAN.h"
-#include "define.h"
 
 #define NODE_A
 
 uint32_t RxDATA[2];
 uint32_t flag;
-
-void NVIC_init_IRQs(void){  // pass
-   NVIC_ICPR1 |= (1<<(48%32));
-   NVIC_ISER1 |= (1<<(48%32));
-   NVIC_IPR48 = 10;
-}
-
-
-void LPIT0_init(void){ // pass
-   PCC_LPIT &= ~((0b111)<<PCS);
-   PCC_LPIT |= ((0b110)<<PCS);
-   PCC_LPIT |= (1<<CGC);
-
-   LPIT_MCR |= (1<<M_CEN);
-
-   LPIT_MIER |= (1<<TIE0);
-
-   LPIT_TVAL0 = 4000000;
-
-   LPIT_TCTRL0 &= ~((0b11)<<MODE);
-   LPIT_TCTRL0 |= (1<<T_EN);
-}
-
 
 void CAN_init(){
 #define MSG_BUF_SIZE 4
@@ -79,7 +55,6 @@ void CAN_init(){
    while((FlexCAN0_MCR & (1<<NOTRDY)));
 }
 
-
 void CAN_transmit_msg(uint32_t sw_flag){
    FlexCAN0_IFLAG1 |= 0x00000001;
 
@@ -94,7 +69,6 @@ void CAN_transmit_msg(uint32_t sw_flag){
    FlexCAN0_MB0_0 |= (12<<CODE) | (1<<SRR) | (8<<DLC);
 }
 
-
 void CAN_receive_msg(void){
    uint32_t dummy;
 
@@ -104,31 +78,4 @@ void CAN_receive_msg(void){
    dummy = FlexCAN0_TIMER;
 
    FlexCAN0_IFLAG1 |= 0x00000010;
-}
-
-
-void CAN_PORT_init(void){
-   PCC_PORTC |= (1<<CGC);
-   PORTC_PCR12 &= ~((0b111)<<MUX);
-   PORTC_PCR12 |= ((0b001)<<MUX);
-   GPIOC_PDDR &= ~(1<<PTC12);
-
-   PCC_PORTD |= (1<<CGC);
-   PORTD_PCR16 &= ~((0b111)<<MUX);
-   PORTD_PCR16 |= ((0b001)<<MUX);
-   GPIOD_PDDR |= (1<<PTD16);
-
-
-   PCC_PORTE |= (1<<CGC);
-   PORTE_PCR4 &= ~((0b111)<<MUX);
-   PORTE_PCR4 |= ((0b101)<<MUX);
-   PORTE_PCR5 &= ~((0b111)<<MUX);
-   PORTE_PCR5 |= ((0b101)<<MUX);
-}
-
-void LPIT0_Ch0_IRQHandler(void){
-   flag = ((GPIOC_PDIR & (1<<PTC12)) >> PTC12);
-
-   CAN_transmit_msg(flag);
-   LPIT_MSR |= (1<<TIF0);
 }
