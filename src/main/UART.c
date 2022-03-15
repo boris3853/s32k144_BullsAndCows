@@ -34,13 +34,11 @@ void LPUART1_init(void){
 }
 
 char LPUART1_receive_char(void){
-	char receive, buf;
+	char receive;
 
-	while((LPUART1_STAT & (1<<RDRF))==0);
+	while((LPUART1_STAT & (1<<RDRF)) == 0);
+
 	receive = LPUART1_DATA;
-
-	while((LPUART1_STAT & (1<<RDRF))==0);
-	buf = LPUART1_DATA;
 
 	return receive;
 }
