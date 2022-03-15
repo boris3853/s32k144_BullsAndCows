@@ -1,6 +1,6 @@
 #include "LEDs.h"
 
-void LEDS_PORT_init(){
+void LEDs_PORT_init(){
 	PCC_PORTB |= (1<<CGC);
 
 	PORTB_S1 &= ~((0b111)<<MUX);
