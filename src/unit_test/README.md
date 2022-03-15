@@ -5,6 +5,8 @@
 # 2. 1ND_7seg
 ![KakaoTalk_20220314_230208652(1) (2)](https://user-images.githubusercontent.com/60434800/158354398-73866fa2-8597-48dc-a016-9465d12bdb73.gif)
 .
+# 3. UART
+![uart](https://user-images.githubusercontent.com/60434800/158360246-9b62685a-0ea3-40ba-bef7-eee069b0394c.gif)
 
 
 
